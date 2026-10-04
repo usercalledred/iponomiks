@@ -254,29 +254,29 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 | # | Test | Input | Expected result | Actual result |
 |---|---|---|---|---|
-| 1 | Empty tracker fields | Leave name, month, or budget blank | "Please fill in all fields." message; no tracker created | *(fill in)* |
-| 2 | Non-numeric budget | `abc` | "Budget must be a number." | *(fill in)* |
-| 3 | Zero or negative budget | `0` or `-500` | "Budget must be greater than zero." | *(fill in)* |
-| 4 | Oversized budget | `99999999` | "Budget is too large (max 10,000,000)." | *(fill in)* |
-| 5 | Amount with comma | `1,500` | Accepted as 1,500.00 | *(fill in)* |
-| 6 | Add expense without amount | Leave amount blank | "Please enter the amount." | *(fill in)* |
-| 7 | Long description | More than 40 characters | "Description is too long (max 40 characters)." | *(fill in)* |
-| 8 | Add valid expense | Category, description, amount | Row appears in the list; totals, bar, and category breakdown update; label shows `[UNSAVED]` | *(fill in)* |
-| 9 | Safe status | Spend under 75% of the budget | Green status, "On track" message | *(fill in)* |
-| 10 | Warning status | Spend 75% or more (up to 100%) of the budget | Orange status, "Careful!" message with percentage | *(fill in)* |
-| 11 | Over budget | Spend more than the budget | Red status, "Over budget by ..." message, and a pop-up the moment the budget is crossed | *(fill in)* |
-| 12 | Delete selected | Select a row, click DELETE SELECTED | Row removed and totals update | *(fill in)* |
-| 13 | Delete with nothing selected | Click DELETE SELECTED with no selection | "Click an expense in the list first." | *(fill in)* |
-| 14 | Clear all | Click CLEAR ALL, confirm | All expenses removed | *(fill in)* |
-| 15 | Save new tracker | Click SAVE | Label changes to `[SAVED]`; tracker appears in Load Trackers | *(fill in)* |
-| 16 | Leave without saving | Add an expense, click BACK | Prompt asks to save before leaving | *(fill in)* |
-| 17 | Reopen saved tracker | Open it from Load Trackers | Same name, month, budget, and expenses | *(fill in)* |
-| 18 | Edit tracker | Change name, month, or budget | Changes appear in the list; expenses are kept | *(fill in)* |
-| 19 | Edit budget below spending | Set budget lower than the amount spent | Confirmation says the tracker will be over budget | *(fill in)* |
-| 20 | Delete tracker | Select a tracker, click DELETE, confirm | Tracker and its expenses are removed from the list and database | *(fill in)* |
-| 21 | Open with nothing selected | Click OPEN/EDIT/DELETE with no selection | "Please select a tracker from the list first." | *(fill in)* |
-| 22 | Missing database | Delete `iponomiks.db`, then start the app | The database and tables are recreated automatically | *(fill in)* |
-| 23 | Window resize | Resize or change the window | Backgrounds and widgets rescale without errors | *(fill in)* |
+| 1 | Empty tracker fields | Leave name, month, or budget blank | "Please fill in all fields." message; no tracker created | "Please fill in all fields." message; no tracker created |
+| 2 | Non-numeric budget | `abc` | "Budget must be a number." | "Budget must be a number." message;  |
+| 3 | Zero or negative budget | `0` or `-500` | "Budget must be greater than zero." | "Budget must be greater than zero." |
+| 4 | Oversized budget | `99999999` | "Budget is too large (max 10,000,000)." | "Budget is too large (max 10,000,000)." |
+| 5 | Amount with comma | `1,500` | Accepted as 1,500.00 | Accepted as 1,500.00 |
+| 6 | Add expense without amount | Leave amount blank | "Please enter the amount." | Please enter the amount. |
+| 7 | Long description | More than 40 characters | "Description is too long (max 40 characters)." | Description is too long error shows|
+| 8 | Add valid expense | Category, description, amount | Row appears in the list; totals, bar, and category breakdown update; label shows `[UNSAVED]` | Expected result was followed |
+| 9 | Safe status | Spend under 75% of the budget | Green status, "On track" message | Green Status |
+| 10 | Warning status | Spend 75% or more (up to 100%) of the budget | Orange status, "Careful!" message with percentage | Orange Status |
+| 11 | Over budget | Spend more than the budget | Red status, "Over budget by ..." message, and a pop-up the moment the budget is crossed | Red Status |
+| 12 | Delete selected | Select a row, click DELETE SELECTED | Row removed and totals update | Row removed, totals were updated |
+| 13 | Delete with nothing selected | Click DELETE SELECTED with no selection | "Click an expense in the list first." | Must click expense in the lish|
+| 14 | Clear all | Click CLEAR ALL, confirm | All expenses removed | All expenses removed |
+| 15 | Save new tracker | Click SAVE | Label changes to `[SAVED]`; tracker appears in Load Trackers | Saved to Load Trackers and database|
+| 16 | Leave without saving | Add an expense, click BACK | Prompt asks to save before leaving | Prompt asks to save |
+| 17 | Reopen saved tracker | Open it from Load Trackers | Same name, month, budget, and expenses | Same name, budget, and expenses |
+| 18 | Edit tracker | Change name, month, or budget | Changes appear in the list; expenses are kept | Expenses are kept |
+| 19 | Edit budget below spending | Set budget lower than the amount spent | Confirmation says the tracker will be over budget | Confirmation that it will be over budget |
+| 20 | Delete tracker | Select a tracker, click DELETE, confirm | Tracker and its expenses are removed from the list and database | Removed from the list and database |
+| 21 | Open with nothing selected | Click OPEN/EDIT/DELETE with no selection | "Please select a tracker from the list first." | Must select in tracker first |
+| 22 | Missing database | Delete `iponomiks.db`, then start the app | The database and tables are recreated automatically | Created automatically |
+| 23 | Window resize | Resize or change the window | Backgrounds and widgets rescale without errors | No errors when rescaling |
 
 ---
 
