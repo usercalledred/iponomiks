@@ -1,6 +1,6 @@
 # 1. Project Title
 
-**IPONOMIKS: Student Budget and Expense Tracker System**
+**IPONOMIKS: Budget and Expense Tracker System**
 
 ---
 
