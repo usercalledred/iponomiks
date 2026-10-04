@@ -1,10 +1,10 @@
-# 1. Project Title
+# Project Title
 
 **IPONOMIKS: Budget and Expense Tracker System**
 
 ---
 
-# 2. Project Description
+# Project Description
 
 IPONOMIKS is a desktop application that helps students plan a monthly budget and record their expenses. The user creates a tracker (a name, a month, and a budget), adds expenses under categories, and the system shows how much has been spent, how much is left, and whether the student is still on track. Trackers can be saved, reopened, edited, and deleted.
 
@@ -12,7 +12,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 ---
 
-# 3. Project Objectives
+# Project Objectives
 
 - Let anyone set a monthly budget and record expenses by category.
 - Show the remaining budget and a clear status (safe, warning, or over budget) with a color-coded progress bar.
@@ -23,7 +23,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 ---
 
-# 4. Features
+# Features
 
 | Feature | Description |
 |---|---|
@@ -46,7 +46,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 ---
 
-# 5. Technologies Used
+# Technologies Used
 
 - **Programming language:** Python 3.13
 - **GUI framework:** Tkinter (included with Python), including `ttk` widgets (`Treeview`, `Combobox`, `Scrollbar`)
@@ -58,7 +58,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 ---
 
-# 6. Project Structure
+# Project Structure
 
 ```
 iponomiks/
@@ -96,7 +96,7 @@ iponomiks/
 
 ---
 
-# 7. Installation and Setup
+7. Installation and Setup
 
 **Requirements:** Windows (the font handling is Windows-oriented), Python 3.10 or newer, and Git.
 
@@ -126,7 +126,7 @@ The database file and tables are created automatically on the first run.
 
 ---
 
-# 8. How to Use the System
+# How to Use the System
 
 1. Launch the app with `python main.py`. It opens in fullscreen mode.
 2. Click **START TRACKING**.
@@ -144,7 +144,7 @@ The database file and tables are created automatically on the first run.
 
 ---
 
-# 9. OOP Implementation
+# OOP Implementation
 
 ## Important classes and objects
 
@@ -189,7 +189,7 @@ The database file and tables are created automatically on the first run.
 
 ---
 
-# 10. Database
+# Database
 
 ## Structure
 
@@ -236,7 +236,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 ---
 
-# 11. Screenshots
+# Screenshots
 
 | Screenshot | Description |
 |---|---|
@@ -250,7 +250,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 ---
 
-# 12. Testing
+# Testing
 
 | # | Test | Input | Expected result | Actual result |
 |---|---|---|---|---|
@@ -280,7 +280,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 ---
 
-# 13. Known Issues / Limitations
+# Known Issues / Limitations
 
 - **Records file can go out of sync.** `database/records.json` is updated when a tracker is saved from the dashboard, but **deleting** a tracker or **editing** its details from the Load screen only changes SQLite. A deleted tracker can therefore stay in `records.json`, and an edited name, month, or budget is not reflected there until the tracker is saved again from the dashboard. SQLite is the source of truth.
 - Money values are stored as floating-point numbers (rounded to 2 decimals). Using `Decimal` or integer centavos would avoid rounding errors.
@@ -297,7 +297,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 ---
 
-# 14. Author
+# Author
 
 - **Name:** *Red Liegh B. Gonzales*
 - **Section:** *CS26L(3581)*
