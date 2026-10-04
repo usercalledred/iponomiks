@@ -238,8 +238,6 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 # 11. Screenshots
 
-> *Add your screenshots to a `screenshots/` folder and update the file names below.*
-
 | Screenshot | Description |
 |---|---|
 | ![Main Menu](screenshots/main_menu.png) | **Main Menu:** Start Tracking, Load Trackers, and Exit buttons with the glowing title. |
@@ -253,8 +251,6 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 ---
 
 # 12. Testing
-
-The application was tested manually. Fill in the **Actual result** column after running each test yourself.
 
 | # | Test | Input | Expected result | Actual result |
 |---|---|---|---|---|
@@ -296,7 +292,6 @@ The application was tested manually. Fill in the **Actual result** column after 
 - It is a single-user, offline app with no login, backup, or export (CSV/PDF).
 - No automated unit tests yet; testing was done manually.
 - `database/__init__.py` uses a wildcard import (`from .database import *`).
-- *(Add any other bugs or unfinished features you know of.)*
 
 **Possible future work:** CSV/PDF export, per-category budgets, recurring expenses, a date picker for the month, a search box on the load screen, removing the JSON records file or keeping it in sync, and unit tests for the `logic/` modules.
 
