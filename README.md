@@ -14,7 +14,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 # 3. Project Objectives
 
-- Let a student set a monthly budget and record expenses by category.
+- Let anyone set a monthly budget and record expenses by category.
 - Show the remaining budget and a clear status (safe, warning, or over budget) with a color-coded progress bar.
 - Summarize spending by category so students can see where their money goes.
 - Save trackers in a database so they can be reopened, edited, or deleted later.
