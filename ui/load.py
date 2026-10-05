@@ -5,6 +5,7 @@ from tkinter import messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
 
 import database
+import records
 from logic.budget import Budget, BudgetStatus, format_money
 from logic.validation import ValidationError, parse_money
 from ui.mainmenu import GlassButton, GlowTextRenderer, ImageBackground
@@ -329,6 +330,14 @@ class EditTrackerDialog(tk.Toplevel):
             return
 
         database.update_tracker_details(self.tracker_id, name, month, budget)
+        try:
+            records.save_record(self.tracker_id, name, month, budget,
+                                database.get_tracker_expenses(self.tracker_id))
+        except Exception as error:
+            messagebox.showwarning(
+                "Records not updated",
+                f"Saved to the database, but the records file failed:\n{error}",
+                parent=self)
         self.destroy()
         self.on_saved(self.tracker_id)
 
@@ -467,6 +476,13 @@ class LoadTrackerWindow(tk.Toplevel):
         )
         if confirmed:
             database.delete_tracker(tracker_id)
+            try:
+                records.delete_record(tracker_id)
+            except Exception as error:
+                messagebox.showwarning(
+                    "Records not updated",
+                    f"Deleted from the database, but the records file failed:\n{error}",
+                    parent=self)
             self._reload()
 
     def _handle_close(self):
