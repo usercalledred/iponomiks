@@ -1,6 +1,6 @@
 # Project Title
 
-**IPONOMIKS: Budget and Expense Tracker System**
+**IPONOMIKS: Student Budget and Expense Tracker System**
 
 ---
 
@@ -14,12 +14,9 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 # Project Objectives
 
-- Let anyone set a monthly budget and record expenses by category.
+- Let student set a monthly budget and record expenses by category.
 - Show the remaining budget and a clear status (safe, warning, or over budget) with a color-coded progress bar.
 - Summarize spending by category so students can see where their money goes.
-- Save trackers in a database so they can be reopened, edited, or deleted later.
-- Validate all input so invalid data is never stored.
-- Apply object-oriented programming and a layered structure (UI, logic, database).
 
 ---
 
@@ -151,13 +148,10 @@ The database file and tables are created automatically on the first run.
 | Class | File | Role |
 |---|---|---|
 | `App` | `main.py` | Creates the root window and connects the screens |
-| `MainMenu` | `ui/mainmenu.py` | Main menu screen with animated glowing title |
-| `GlassButton` | `ui/mainmenu.py` | Reusable glass-style button |
-| `GlowTextRenderer` | `ui/mainmenu.py` | Draws outlined and glowing text, caches fonts |
+| `MainMenu` | `ui/mainmenu.py` | Main menu screen |
 | `ImageBackground` | `ui/mainmenu.py` | Loads and scales a background image |
 | `TrackerWindow` | `ui/start.py` | Create Tracker window |
 | `TrackerDashboard` | `ui/dashboard.py` | Dashboard window (form, list, summary, bar) |
-| `MinecraftButton` | `ui/dashboard.py` | Styled button used on the dashboard |
 | `Theme` | `ui/dashboard.py` | Holds the color constants and status colors |
 | `LoadTrackerWindow` | `ui/load.py` | Saved trackers window |
 | `TrackerList` | `ui/load.py` | Custom scrollable, selectable list of trackers |
