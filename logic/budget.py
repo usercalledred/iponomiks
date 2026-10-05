@@ -1,21 +1,17 @@
 CURRENCY = "PHP "
 
-
 def format_money(amount):
     sign = "-" if amount < 0 else ""
     return f"{sign}{CURRENCY}{abs(amount):,.2f}"
-
 
 class BudgetStatus:
     SAFE = "safe"        # green
     WARNING = "warning"  # orange
     OVER = "over"        # red
 
-
 class Budget:
-    """Budget rules. All methods take the amount spent so far."""
 
-    WARNING_THRESHOLD = 0.75  # orange once 75% of the budget is used
+    WARNING_THRESHOLD = 0.75  
 
     def __init__(self, total):
         self.total = float(total)
@@ -32,7 +28,6 @@ class Budget:
         return spent / self.total * 100
 
     def bar_fraction(self, spent):
-        """0..1 value used to fill the tracker bar."""
         return max(0.0, min(1.0, self.percent_used(spent) / 100))
 
     def status(self, spent):
