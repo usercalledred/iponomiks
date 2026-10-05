@@ -93,7 +93,7 @@ iponomiks/
 
 ---
 
-7. Installation and Setup
+# Installation and Setup
 
 **Requirements:** Windows (the font handling is Windows-oriented), Python 3.10 or newer, and Git.
 
