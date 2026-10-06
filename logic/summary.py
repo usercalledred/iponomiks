@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from logic.budget import format_money  # noqa: F401  (re-exported for the UI)
+from logic.budget import format_money  
 
 
 @dataclass
@@ -13,9 +13,9 @@ class Summary:
     message: str
     count: int
     average: float
-    highest: object            # ExpenseItem or None
-    top_category: str          # or None
-    by_category: list = field(default_factory=list)  # (category, total, share %)
+    highest: object           
+    top_category: str        
+    by_category: list = field(default_factory=list)  
 
 
 def build_summary(budget, log):

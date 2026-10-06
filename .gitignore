@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+*.log
+__pycache__/
+venv/
+*.json
+*.db
+=======
+*.log
+__pycache__/
+venv/
+*.pyc
+>>>>>>> 6e7973d052684aaa651c20e5cd93ee5672abd4e9

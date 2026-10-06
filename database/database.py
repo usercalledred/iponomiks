@@ -3,13 +3,12 @@ from contextlib import contextmanager
 from pathlib import Path
 
 
-# Database file location
 BASE_DIR = Path(__file__).resolve().parent
 DATABASE_FILE = BASE_DIR / "iponomiks.db"
 
 
 def get_connection():
-    """Create and return a database connection."""
+   
     connection = sqlite3.connect(DATABASE_FILE)
     connection.execute("PRAGMA foreign_keys = ON")
     return connection
@@ -17,7 +16,6 @@ def get_connection():
 
 @contextmanager
 def _session():
-    """Open a connection, commit on success, roll back on error, always close."""
     connection = get_connection()
     try:
         yield connection.cursor()
@@ -30,7 +28,6 @@ def _session():
 
 
 def init_db():
-    """Create the database tables if they do not exist."""
 
     with _session() as cursor:
         cursor.execute("""
@@ -57,7 +54,7 @@ def init_db():
             )
         """)
 
-        # Speeds up loading a tracker's expenses.
+        
         cursor.execute("""
             CREATE INDEX IF NOT EXISTS idx_expenses_tracker
             ON expenses(tracker_id)
@@ -73,7 +70,7 @@ def _insert_expenses(cursor, tracker_id, expenses):
 
 
 def save_tracker(name, month, budget, expenses):
-    """Save a new tracker and its expenses."""
+   
 
     with _session() as cursor:
         cursor.execute("""
@@ -88,7 +85,7 @@ def save_tracker(name, month, budget, expenses):
 
 
 def get_all_trackers():
-    """Return all saved trackers."""
+    
 
     with _session() as cursor:
         cursor.execute("""
@@ -99,8 +96,23 @@ def get_all_trackers():
         return cursor.fetchall()
 
 
+def get_tracker_overview():
+    with _session() as cursor:
+        cursor.execute("""
+            SELECT t.id, t.name, t.month, t.budget,
+                   datetime(t.created_at, 'localtime'),
+                   ROUND(COALESCE(SUM(e.amount), 0), 2),
+                   COUNT(e.id)
+            FROM trackers t
+            LEFT JOIN expenses e ON e.tracker_id = t.id
+            GROUP BY t.id
+            ORDER BY t.id DESC
+        """)
+        return cursor.fetchall()
+
+
 def get_tracker(tracker_id):
-    """Return one tracker by its ID."""
+    
 
     with _session() as cursor:
         cursor.execute("""
@@ -112,8 +124,7 @@ def get_tracker(tracker_id):
 
 
 def get_tracker_expenses(tracker_id):
-    """Return all expenses belonging to a tracker."""
-
+    
     with _session() as cursor:
         cursor.execute("""
             SELECT category, description, amount
@@ -125,7 +136,6 @@ def get_tracker_expenses(tracker_id):
 
 
 def update_tracker(tracker_id, name, month, budget, expenses):
-    """Update an existing tracker and replace its expenses."""
 
     with _session() as cursor:
         cursor.execute("""
@@ -138,9 +148,17 @@ def update_tracker(tracker_id, name, month, budget, expenses):
         _insert_expenses(cursor, tracker_id, expenses)
 
 
+def update_tracker_details(tracker_id, name, month, budget):
+   
+    with _session() as cursor:
+        cursor.execute("""
+            UPDATE trackers
+            SET name = ?, month = ?, budget = ?
+            WHERE id = ?
+        """, (name, month, budget, tracker_id))
+
+
 def delete_tracker(tracker_id):
-    """Delete a tracker and all of its expenses."""
 
     with _session() as cursor:
-        cursor.execute("DELETE FROM expenses WHERE tracker_id = ?", (tracker_id,))
         cursor.execute("DELETE FROM trackers WHERE id = ?", (tracker_id,))

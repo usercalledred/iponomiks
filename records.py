@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-RECORDS_FILE = BASE_DIR / "records.json"
+RECORDS_FILE = BASE_DIR / "database" / "records.json"
 
 
 def _read_all():
@@ -18,8 +18,8 @@ def _read_all():
 
 
 def _write_all(records):
-    
-    fd, temp_path = tempfile.mkstemp(dir=BASE_DIR, suffix=".tmp")
+    RECORDS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_path = tempfile.mkstemp(dir=RECORDS_FILE.parent, suffix=".tmp")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as file:
             json.dump(records, file, indent=2, ensure_ascii=False)
@@ -31,7 +31,6 @@ def _write_all(records):
 
 
 def save_record(tracker_id, name, month, budget, expenses):
-
     total_spent = round(sum(amount for _, _, amount in expenses), 2)
     record = {
         "tracker_id": tracker_id,
