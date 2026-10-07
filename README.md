@@ -60,7 +60,6 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 ```
 iponomiks/
 ├── main.py                 # Entry point; App class connects all screens
-├── records.py              # Reads and writes database/records.json
 ├── backgrounds/            # Image assets for the screens
 │   ├── mainmenubg.jpg
 │   ├── trackerbg.jpg
@@ -68,6 +67,7 @@ iponomiks/
 ├── database/
 │   ├── __init__.py         # Exposes the database functions
 │   ├── database.py         # All SQLite code (tables and queries)
+|   ├── records.py          # Reads and writes database/records.json
 │   ├── iponomiks.db        # SQLite database file
 │   └── records.json        # JSON summary records of saved trackers
 ├── logic/
