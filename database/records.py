@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-RECORDS_FILE = BASE_DIR / "database" / "records.json"
+RECORDS_FILE = BASE_DIR / "records.json"
 
 
 def _read_all():
