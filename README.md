@@ -1,6 +1,4 @@
-# Title
-
-**IPONOMIKS: Student Budget and Expense Tracker System**
+# **IPONOMIKS: Student Budget and Expense Tracker System**
 
 ---
 
