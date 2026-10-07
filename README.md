@@ -1,6 +1,5 @@
 # **IPONOMIKS: Student Budget and Expense Tracker System**
 
----
 
 # Description
 
