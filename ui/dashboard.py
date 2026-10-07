@@ -5,7 +5,7 @@ from tkinter import messagebox, ttk
 from PIL import ImageTk
 
 import database
-import records
+from database import records
 from logic.budget import Budget, BudgetStatus, format_money
 from logic.expenses import CATEGORIES, ExpenseLog
 from logic.summary import build_summary

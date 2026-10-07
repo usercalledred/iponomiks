@@ -5,7 +5,7 @@ from tkinter import messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
 
 import database
-import records
+from database import records
 from logic.budget import Budget, BudgetStatus, format_money
 from logic.validation import ValidationError, parse_money
 from ui.mainmenu import GlassButton, GlowTextRenderer, ImageBackground
