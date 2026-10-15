@@ -1,9 +1,12 @@
-# **IPONOMIKS: Student Budget and Expense Tracker System**
+# Title
 
+**IPONOMIKS: Student Budget and Expense Tracker System**
+
+---
 
 # Description
 
-IPONOMIKS is a desktop application that helps students plan a monthly budget and record their expenses. The user creates a tracker (a name, a month, and a budget), adds expenses under categories, and the system shows how much has been spent, how much is left, and whether the student is still on track. Trackers can be saved, reopened, edited, and deleted.
+IPONOMIKS is a desktop application that helps students plan a monthly budget and record their expenses. From the main dashboard the user sees an overview of all saved trackers, then creates a tracker (a name, a month, and a budget), adds expenses under categories, and the system shows how much has been spent, how much is left, and whether the student is still on track. Trackers can be saved, reopened, edited, and deleted.
 
 **Problem addressed:** Students usually live on a fixed allowance and lose track of small daily spending such as food, fare, and mobile load. Many run out of money before the month ends because they have no simple way to see where it went. IPONOMIKS gives them a simple, offline tool that shows their spending clearly and warns them before they go over budget.
 
@@ -11,9 +14,9 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 # Objectives
 
-- To let student set a monthly budget and record expenses by category.
-- To show the remaining budget and a clear status (safe, warning, or over budget) with a color-coded progress bar.
-- To Summarize spending by category so students can see where their money goes.
+- Let student set a monthly budget and record expenses by category.
+- Show the remaining budget and a clear status (safe, warning, or over budget) with a color-coded progress bar.
+- Summarize spending by category so students can see where their money goes.
 
 ---
 
@@ -21,7 +24,9 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 
 | Feature | Description |
 |---|---|
-| Main menu | Entry screen with **Start Tracking**, **Load Trackers**, and **Exit**, with an animated glowing title. |
+| Main dashboard | Entry screen (replaces the old main menu) with a glowing title, a **MENU** panel (**Create Tracker**, **Load Tracker**, **Exit**), an **OVERVIEW** panel, and a **RECENT TRACKERS** panel, all on glass panels in the Minecraft theme. |
+| Overview panel | Shows the number of trackers, total budget, total spent, total remaining, percent used, total entries, how many trackers are over budget, an overall color-coded progress bar with a status message, and the top spending categories across all trackers. |
+| Recent trackers | Lists the 5 newest saved trackers with month, spent / budget, and a status-colored bar. Click one to open it directly. The list refreshes whenever you return to the main dashboard. |
 | Create tracker | Enter a tracker name, month, and budget. Missing or invalid values are rejected with a message. |
 | Add expense | Choose a category, type an optional description, and enter an amount. The list, totals, and status update immediately. |
 | Delete expenses | Remove the selected expense(s) (multi-select supported), or **Clear All** after a confirmation. |
@@ -34,7 +39,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 | Open tracker | Reopens a saved tracker with all of its expenses (button, double-click, or Enter). |
 | Edit tracker | Changes a saved tracker's name, month, or budget. Warns if the new budget is lower than what was already spent. |
 | Delete tracker | Deletes a saved tracker and its expenses after a confirmation. |
-| Keyboard shortcuts | Enter = add expense, Delete = remove selected, Ctrl+S = save, Up/Down/Enter/Delete/Esc on the load screen. |
+| Keyboard shortcuts | Ctrl+N = create tracker and Ctrl+L = load tracker on the main dashboard, Enter = add expense, Delete = remove selected, Ctrl+S = save, Up/Down/Enter/Delete/Esc on the load screen. |
 | Input validation | Amounts must be positive numbers (max 10,000,000), categories must come from the list, and descriptions are limited to 40 characters. |
 | Expense categories | Food, Transportation, School Supplies, Tuition & Fees, Boarding / Rent, Load & Internet, Utilities, Health, Entertainment, Shopping, Savings, Others. |
 
@@ -57,6 +62,7 @@ IPONOMIKS is a desktop application that helps students plan a monthly budget and
 ```
 iponomiks/
 ├── main.py                 # Entry point; App class connects all screens
+├── records.py              # Reads and writes database/records.json
 ├── backgrounds/            # Image assets for the screens
 │   ├── mainmenubg.jpg
 │   ├── trackerbg.jpg
@@ -64,7 +70,6 @@ iponomiks/
 ├── database/
 │   ├── __init__.py         # Exposes the database functions
 │   ├── database.py         # All SQLite code (tables and queries)
-|   ├── records.py          # Reads and writes database/records.json
 │   ├── iponomiks.db        # SQLite database file
 │   └── records.json        # JSON summary records of saved trackers
 ├── logic/
@@ -73,7 +78,7 @@ iponomiks/
 │   ├── summary.py          # Builds the spending summary
 │   └── validation.py       # Input validation and ValidationError
 └── ui/
-    ├── mainmenu.py         # Main menu, glass buttons, glowing title, background
+    ├── maindashboard.py    # Main dashboard (renamed from mainmenu.py), glass buttons, glowing title, background
     ├── start.py            # Create Tracker window
     ├── dashboard.py        # Dashboard: expense form, list, summary, progress bar
     ├── load.py             # Saved trackers list, edit dialog, delete
@@ -123,14 +128,14 @@ The database file and tables are created automatically on the first run.
 # How to Use the System
 
 1. Launch the app with `python main.py`. It opens in fullscreen mode.
-2. Click **START TRACKING**.
+2. The **main dashboard** opens. Check the **OVERVIEW** (totals, overall progress bar, top categories) and **RECENT TRACKERS**, then click **CREATE TRACKER** (or press Ctrl+N).
 3. Enter the **tracker name**, **month**, and **budget**, then click **PROCEED** (or press Enter).
 4. On the dashboard, choose a **category**, type a **description** (optional), type the **amount**, and click **ADD EXPENSE** (or press Enter).
 5. Watch the progress bar, the expense list, and the summary update. The status turns orange at 75% of the budget and red when over budget.
 6. To remove expenses, select one or more rows and click **DELETE SELECTED** (or press Delete). **CLEAR ALL** removes everything after a confirmation.
 7. Click **SAVE** (or press Ctrl+S) to store the tracker. The label changes from `[UNSAVED]` to `[SAVED]`.
 8. Click **BACK** to return. If there are unsaved changes, the app asks whether to save first. **EXIT** closes the whole application.
-9. From the main menu, click **LOAD TRACKERS** to see the saved trackers.
+9. From the main dashboard, click **LOAD TRACKER** (or press Ctrl+L) to see all saved trackers, or click a tracker under **RECENT TRACKERS** to open it right away.
 10. Select a tracker, then:
     - **OPEN TRACKER** (or double-click, or Enter) to open it on the dashboard,
     - **EDIT TRACKER** to change its name, month, or budget,
@@ -145,8 +150,11 @@ The database file and tables are created automatically on the first run.
 | Class | File | Role |
 |---|---|---|
 | `App` | `main.py` | Creates the root window and connects the screens |
-| `MainMenu` | `ui/mainmenu.py` | Main menu screen |
-| `ImageBackground` | `ui/mainmenu.py` | Loads and scales a background image |
+| `MainDashboard` | `ui/maindashboard.py` | Main dashboard screen (menu, overview, recent trackers) |
+| `Palette` | `ui/maindashboard.py` | Color constants for the main dashboard (same values as `Theme`) |
+| `GlowTextRenderer` | `ui/maindashboard.py` | Draws the glowing outlined title text |
+| `GlassButton` | `ui/maindashboard.py` | Glass-style hover button (text now shrinks to fit the button) |
+| `ImageBackground` | `ui/maindashboard.py` | Loads and scales a background image |
 | `TrackerWindow` | `ui/start.py` | Create Tracker window |
 | `TrackerDashboard` | `ui/dashboard.py` | Dashboard window (form, list, summary, bar) |
 | `Theme` | `ui/dashboard.py` | Holds the color constants and status colors |
@@ -231,7 +239,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 | Screenshot | Description |
 |---|---|
-| ![Main Menu](screenshots/main_menu.png) | **Main Menu:** Start Tracking, Load Trackers, and Exit buttons with the glowing title. |
+| ![Main Dashboard](screenshots/main_dashboard.png) | **Main Dashboard:** glowing title, Create Tracker / Load Tracker / Exit buttons, overview totals and progress bar, top categories, and recent trackers. *(Retake this screenshot and save it as `screenshots/main_dashboard.png`.)* |
 | ![Create Tracker](screenshots/create_tracker.png) | **Create Tracker:** form for the tracker name, month, and budget. |
 | ![Dashboard](screenshots/dashboard.png) | **Dashboard:** expense form, expense list, summary panel, and progress bar. |
 | ![Over Budget](screenshots/over_budget.png) | **Over budget state:** red progress bar and the over-budget message. |
@@ -268,6 +276,10 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 | 21 | Open with nothing selected | Click OPEN/EDIT/DELETE with no selection | "Please select a tracker from the list first." | Must select in tracker first |
 | 22 | Missing database | Delete `iponomiks.db`, then start the app | The database and tables are recreated automatically | Created automatically |
 | 23 | Window resize | Resize or change the window | Backgrounds and widgets rescale without errors | No errors when rescaling |
+| 24 | Main dashboard with no trackers | Start the app with an empty database | Totals show zero, message says to create a tracker, recent panel says "NO TRACKERS YET" | *Not yet tested* |
+| 25 | Main dashboard totals | Save two trackers with expenses, return to the dashboard | Trackers, budget, spent, remaining, percent, entries, and top categories match the saved data | *Not yet tested* |
+| 26 | Open a recent tracker | Click a card under RECENT TRACKERS | Tracker opens with its expenses; BACK returns to the main dashboard with updated numbers | *Not yet tested* |
+| 27 | Menu buttons and shortcuts | Click CREATE TRACKER / LOAD TRACKER / EXIT, or press Ctrl+N / Ctrl+L | Create window, load window, or exit, as chosen | *Not yet tested* |
 
 ---
 
@@ -285,6 +297,20 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 - `database/__init__.py` uses a wildcard import (`from .database import *`).
 
 **Possible future work:** CSV/PDF export, per-category budgets, recurring expenses, a date picker for the month, a search box on the load screen, removing the JSON records file or keeping it in sync, and unit tests for the `logic/` modules.
+
+---
+
+# Changes in This Update
+
+- **Main menu redesigned as a main dashboard.** `ui/mainmenu.py` was renamed to `ui/maindashboard.py`, and the `MainMenu` class is now `MainDashboard`.
+- **Same Minecraft theme as the tracker dashboard.** The Minecraft font, the gold headings, the status colors (green / orange / red), the segmented progress bars, and the dark inventory-style cards from `ui/dashboard.py` are reused. A new `Palette` class holds the same color values.
+- **Glass as the panel and text background.** The title plaque, the MENU panel, the OVERVIEW panel, and the RECENT TRACKERS panel are blurred, darkened glass drawn over the background image, and all text sits on top of them. The animated glowing title is kept.
+- **Menu actions.** The panel keeps three buttons: **CREATE TRACKER** (was Start Tracking), **LOAD TRACKER** (was Load Trackers), and **EXIT**. Shortcuts: Ctrl+N and Ctrl+L.
+- **New details on the dashboard.** An overview of all saved trackers (counts, totals, remaining, percent used, entries, over-budget trackers, overall progress bar and message, top spending categories) and a clickable list of recent trackers. The data comes from the existing `database.get_tracker_overview()` and `database.get_tracker_expenses()`; no database changes were needed.
+- **Automatic refresh.** `App._show_menu()` now calls `MainDashboard.refresh()`, so the numbers update after saving, editing, or deleting trackers.
+- **Open from the dashboard.** `App.open_recent_tracker()` was added, and `App.open_saved_dashboard()` now accepts an optional `on_close`, so BACK returns to the main dashboard (not the load screen) when a tracker is opened from the recent list.
+- **Button text fits.** `GlassButton` now shrinks its text so longer labels such as CREATE TRACKER fit inside the button on any screen size.
+- **Updated imports.** `ui/start.py`, `ui/dashboard.py`, `ui/load.py`, and `main.py` now import from `ui.maindashboard` instead of `ui.mainmenu`. `ui/maindashboard.py` also imports `database` and `logic` to read the overview data.
 
 ---
 
