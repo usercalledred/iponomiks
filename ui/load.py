@@ -8,7 +8,7 @@ import database
 from database import records
 from logic.budget import Budget, BudgetStatus, format_money
 from logic.validation import ValidationError, parse_money
-from ui.mainmenu import GlassButton, GlowTextRenderer, ImageBackground
+from ui.maindashboard import GlassButton, GlowTextRenderer, ImageBackground
 from ui.widgets import FontLoader, GlassPanel
 
 WHITE = "#ffffff"
