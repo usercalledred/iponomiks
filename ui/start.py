@@ -6,7 +6,7 @@ from PIL import ImageTk
 
 from logic.validation import ValidationError, parse_money
 from ui.widgets import FontLoader, GlassPanel
-from ui.mainmenu import GlassButton, GlowTextRenderer, ImageBackground
+from ui.maindashboard import GlassButton, GlowTextRenderer, ImageBackground
 
 class TrackerWindow(tk.Toplevel):
 
