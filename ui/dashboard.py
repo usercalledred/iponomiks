@@ -10,7 +10,7 @@ from logic.budget import Budget, BudgetStatus, format_money
 from logic.expenses import CATEGORIES, ExpenseLog
 from logic.summary import build_summary
 from logic.validation import ValidationError
-from ui.mainmenu import GlassButton, GlowTextRenderer, ImageBackground
+from ui.maindashboard import GlassButton, GlowTextRenderer, ImageBackground
 from ui.widgets import FontLoader
 
 
