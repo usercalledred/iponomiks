@@ -1,7 +1,5 @@
 # **IPONOMIKS: Student Budget and Expense Tracker System**
 
----
-
 # Description
 
 IPONOMIKS is a desktop application that helps students plan a monthly budget and record their expenses. From the main dashboard the user sees an overview of all saved trackers, then creates a tracker (a name, a month, and a budget), adds expenses under categories, and the system shows how much has been spent, how much is left, and whether the student is still on track. Trackers can be saved, reopened, edited, and deleted.
