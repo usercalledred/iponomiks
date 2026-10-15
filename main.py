@@ -5,7 +5,7 @@ from pathlib import Path
 import database
 from ui.dashboard import TrackerDashboard
 from ui.load import LoadTrackerWindow
-from ui.mainmenu import MainMenu
+from ui.maindashboard import MainDashboard
 from ui.start import TrackerWindow
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -49,13 +49,14 @@ class App:
         self.create_window = None
         self.load_window = None
 
-        self.menu = MainMenu(
+        self.main_dashboard = MainDashboard(
             self.root,
             background_path=MENU_BACKGROUND,
             font_path=FONT_PATH,
-            on_start=self.open_tracker,
+            on_create=self.open_tracker,
             on_load=self.open_saved_trackers,
-            on_exit=self.root.destroy
+            on_exit=self.root.destroy,
+            on_open_tracker=self.open_recent_tracker
         )
 
     def open_tracker(self):
@@ -94,7 +95,14 @@ class App:
             on_open=self.open_saved_dashboard
         )
 
-    def open_saved_dashboard(self, tracker_id):
+    def open_recent_tracker(self, tracker_id):
+        if database.get_tracker(tracker_id) is None:
+            self.main_dashboard.refresh()
+            return
+        self.root.withdraw()
+        self.open_saved_dashboard(tracker_id, on_close=self._show_menu)
+
+    def open_saved_dashboard(self, tracker_id, on_close=None):
         tracker = database.get_tracker(tracker_id)
         if tracker is None:
             return
@@ -113,13 +121,14 @@ class App:
             budget=budget,
             tracker_id=tracker_id,
             expenses=database.get_tracker_expenses(tracker_id),
-            on_close=self.open_saved_trackers,
+            on_close=on_close or self.open_saved_trackers,
             on_exit=self.root.destroy
         )
 
     def _show_menu(self):
         self.root.deiconify()
         self.root.attributes("-fullscreen", True)
+        self.main_dashboard.refresh()
 
     def run(self):
         self.root.mainloop()
