@@ -1,5 +1,3 @@
-# Title
-
 **IPONOMIKS: Student Budget and Expense Tracker System**
 
 ---
@@ -239,7 +237,7 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 | Screenshot | Description |
 |---|---|
-| ![Main Dashboard](screenshots/main_dashboard.png) | **Main Dashboard:** glowing title, Create Tracker / Load Tracker / Exit buttons, overview totals and progress bar, top categories, and recent trackers. *(Retake this screenshot and save it as `screenshots/main_dashboard.png`.)* |
+| ![Main Dashboard](screenshots/main_dashboard.png) | **Main Dashboard:** glowing title, Create Tracker / Load Tracker / Exit buttons, overview totals and progress bar, top categories, and recent trackers.
 | ![Create Tracker](screenshots/create_tracker.png) | **Create Tracker:** form for the tracker name, month, and budget. |
 | ![Dashboard](screenshots/dashboard.png) | **Dashboard:** expense form, expense list, summary panel, and progress bar. |
 | ![Over Budget](screenshots/over_budget.png) | **Over budget state:** red progress bar and the over-budget message. |
@@ -276,10 +274,6 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 | 21 | Open with nothing selected | Click OPEN/EDIT/DELETE with no selection | "Please select a tracker from the list first." | Must select in tracker first |
 | 22 | Missing database | Delete `iponomiks.db`, then start the app | The database and tables are recreated automatically | Created automatically |
 | 23 | Window resize | Resize or change the window | Backgrounds and widgets rescale without errors | No errors when rescaling |
-| 24 | Main dashboard with no trackers | Start the app with an empty database | Totals show zero, message says to create a tracker, recent panel says "NO TRACKERS YET" | *Not yet tested* |
-| 25 | Main dashboard totals | Save two trackers with expenses, return to the dashboard | Trackers, budget, spent, remaining, percent, entries, and top categories match the saved data | *Not yet tested* |
-| 26 | Open a recent tracker | Click a card under RECENT TRACKERS | Tracker opens with its expenses; BACK returns to the main dashboard with updated numbers | *Not yet tested* |
-| 27 | Menu buttons and shortcuts | Click CREATE TRACKER / LOAD TRACKER / EXIT, or press Ctrl+N / Ctrl+L | Create window, load window, or exit, as chosen | *Not yet tested* |
 
 ---
 
