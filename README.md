@@ -300,20 +300,6 @@ All queries use parameterized placeholders (`?`) to prevent SQL injection. The `
 
 ---
 
-# Changes in This Update
-
-- **Main menu redesigned as a main dashboard.** `ui/mainmenu.py` was renamed to `ui/maindashboard.py`, and the `MainMenu` class is now `MainDashboard`.
-- **Same Minecraft theme as the tracker dashboard.** The Minecraft font, the gold headings, the status colors (green / orange / red), the segmented progress bars, and the dark inventory-style cards from `ui/dashboard.py` are reused. A new `Palette` class holds the same color values.
-- **Glass as the panel and text background.** The title plaque, the MENU panel, the OVERVIEW panel, and the RECENT TRACKERS panel are blurred, darkened glass drawn over the background image, and all text sits on top of them. The animated glowing title is kept.
-- **Menu actions.** The panel keeps three buttons: **CREATE TRACKER** (was Start Tracking), **LOAD TRACKER** (was Load Trackers), and **EXIT**. Shortcuts: Ctrl+N and Ctrl+L.
-- **New details on the dashboard.** An overview of all saved trackers (counts, totals, remaining, percent used, entries, over-budget trackers, overall progress bar and message, top spending categories) and a clickable list of recent trackers. The data comes from the existing `database.get_tracker_overview()` and `database.get_tracker_expenses()`; no database changes were needed.
-- **Automatic refresh.** `App._show_menu()` now calls `MainDashboard.refresh()`, so the numbers update after saving, editing, or deleting trackers.
-- **Open from the dashboard.** `App.open_recent_tracker()` was added, and `App.open_saved_dashboard()` now accepts an optional `on_close`, so BACK returns to the main dashboard (not the load screen) when a tracker is opened from the recent list.
-- **Button text fits.** `GlassButton` now shrinks its text so longer labels such as CREATE TRACKER fit inside the button on any screen size.
-- **Updated imports.** `ui/start.py`, `ui/dashboard.py`, `ui/load.py`, and `main.py` now import from `ui.maindashboard` instead of `ui.mainmenu`. `ui/maindashboard.py` also imports `database` and `logic` to read the overview data.
-
----
-
 # Author
 
 - **Name:** *Red Liegh B. Gonzales*
